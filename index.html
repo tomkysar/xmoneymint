@@ -67,9 +67,10 @@
   .logo { animation-delay: .05s; }
   .logo img { width: 92px; height: auto; display: block; }
 
+  main > * + * { margin-top: 48px; }
+
   .brand {
     animation-delay: .15s;
-    margin-top: 40px;
     font-size: clamp(24px, 5.2vw, 34px);
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -77,8 +78,7 @@
   }
 
   .close {
-    animation-delay: .25s;
-    margin-top: 16px;
+    animation-delay: .45s;
     font-size: 13px;
     font-weight: 400;
     color: var(--muted);
@@ -86,8 +86,7 @@
   }
 
   .amount {
-    animation-delay: .38s;
-    margin-top: 64px;
+    animation-delay: .25s;
     font-size: clamp(20px, 4.4vw, 28px);
     font-weight: 500;
     line-height: 1;
@@ -95,9 +94,13 @@
   }
   .amount span { color: var(--muted); font-weight: 400; font-size: 0.6em; margin-left: 8px; }
 
+  .addr-wrap {
+    animation-delay: .35s;
+    position: relative;
+    max-width: 100%;
+  }
+
   .address {
-    animation-delay: .46s;
-    margin-top: 24px;
     display: inline-block;
     max-width: 100%;
     padding: 4px 2px;
@@ -117,24 +120,18 @@
   .address.copied .addr { border-bottom-color: #00ba7c; }
 
   .copied-note {
-    display: block;
-    height: 18px;
-    margin-top: 8px;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
     font-size: 12px;
     color: #00ba7c;
     opacity: 0;
     transition: opacity .2s;
+    pointer-events: none;
   }
   .copied-note.show { opacity: 1; }
-
-  .terms {
-    animation-delay: .54s;
-    margin-top: 40px;
-    font-size: 13px;
-    line-height: 1.7;
-    color: var(--muted);
-  }
-  .terms strong { color: var(--fg); font-weight: 500; }
 
   footer {
     animation-delay: .6s;
@@ -160,16 +157,17 @@
     </div>
 
     <h1 class="brand reveal">X Money<br>Open Edition</h1>
-    <p class="close reveal" id="closeLine"><span id="countdown">6:00:00</span></p>
 
     <p class="amount reveal">0.0069420<span>ETH</span></p>
 
-    <button class="address reveal" id="copyBtn" type="button" title="Copy address">
-      <span class="addr">0x75A50eFC68d0871c120C28D2E1247052f3aCB5c5</span>
-    </button>
-    <span class="copied-note" id="copiedNote">Address copied</span>
+    <div class="addr-wrap reveal">
+      <button class="address" id="copyBtn" type="button" title="Copy address">
+        <span class="addr">0x75A50eFC68d0871c120C28D2E1247052f3aCB5c5</span>
+      </button>
+      <span class="copied-note" id="copiedNote">Address copied</span>
+    </div>
 
-      <p class="terms reveal"><strong>$8</strong> will be sent for your address.</p>
+    <p class="close reveal" id="closeLine"><span id="countdown">6:00:00</span></p>
   </main>
 
   <footer class="reveal">
