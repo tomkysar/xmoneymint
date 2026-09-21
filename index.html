@@ -11,7 +11,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/flag.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #000000;
@@ -28,7 +28,7 @@
   body {
     background: var(--bg);
     color: var(--fg);
-    font-family: "Chirp", "Archivo", -apple-system, "Helvetica Neue", sans-serif;
+    font-family: var(--mono);
     -webkit-font-smoothing: antialiased;
     display: flex;
     flex-direction: column;
@@ -65,22 +65,21 @@
   @keyframes rise { to { opacity: 1; transform: none; } }
 
   .logo { animation-delay: .05s; }
-  .logo img { width: 108px; height: auto; display: block; }
+  .logo img { width: 92px; height: auto; display: block; }
 
   .brand {
     animation-delay: .15s;
-    margin-top: 32px;
-    font-size: clamp(32px, 7vw, 48px);
+    margin-top: 40px;
+    font-size: clamp(24px, 5.2vw, 34px);
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.08;
+    line-height: 1.25;
   }
 
   .close {
     animation-delay: .25s;
-    margin-top: 18px;
-    font-family: var(--mono);
-    font-size: 14px;
+    margin-top: 16px;
+    font-size: 13px;
     font-weight: 400;
     color: var(--muted);
     font-variant-numeric: tabular-nums;
@@ -88,26 +87,24 @@
 
   .amount {
     animation-delay: .38s;
-    margin-top: 56px;
-    font-family: var(--mono);
-    font-size: clamp(26px, 5.5vw, 40px);
+    margin-top: 64px;
+    font-size: clamp(20px, 4.4vw, 28px);
     font-weight: 500;
-    letter-spacing: -0.01em;
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
-  .amount span { color: var(--muted); font-weight: 400; font-size: 0.5em; margin-left: 8px; }
+  .amount span { color: var(--muted); font-weight: 400; font-size: 0.6em; margin-left: 8px; }
 
   .address {
     animation-delay: .46s;
-    margin-top: 28px;
+    margin-top: 24px;
     display: inline-block;
     max-width: 100%;
     padding: 4px 2px;
     border: none;
     background: none;
     font-family: var(--mono);
-    font-size: clamp(12px, 2.6vw, 15px);
+    font-size: clamp(11px, 2.4vw, 14px);
     letter-spacing: 0.01em;
     color: var(--muted);
     cursor: pointer;
@@ -132,12 +129,12 @@
 
   .terms {
     animation-delay: .54s;
-    margin-top: 48px;
-    font-size: 15px;
+    margin-top: 40px;
+    font-size: 13px;
     line-height: 1.7;
     color: var(--muted);
   }
-  .terms strong { color: var(--fg); font-weight: 600; }
+  .terms strong { color: var(--fg); font-weight: 500; }
 
   footer {
     animation-delay: .6s;
