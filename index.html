@@ -57,23 +57,23 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 72px 32px;
+    padding: 61px 28px;
     width: 100%;
-    max-width: 1080px;
+    max-width: 918px;
   }
 
   .reveal { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
   @keyframes rise { to { opacity: 1; transform: none; } }
 
-  .logo img { width: 138px; height: auto; display: block; }
+  .logo img { width: 117px; height: auto; display: block; }
 
-  main > * + * { margin-top: 72px; }
+  main > * + * { margin-top: 61px; }
 
   .logo { animation-delay: .05s; }
 
   .brand {
     animation-delay: .15s;
-    font-size: clamp(36px, 7.8vw, 51px);
+    font-size: clamp(31px, 6.6vw, 43px);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.25;
@@ -83,18 +83,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
+    gap: 15px;
   }
 
   .close {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--fg);
     font-variant-numeric: tabular-nums;
   }
 
   .tweet {
-    font-size: 14px;
+    font-size: 12px;
     color: var(--muted);
     text-decoration: none;
     border-bottom: 1px dashed var(--line);
@@ -105,21 +105,21 @@
 
   .amount {
     animation-delay: .25s;
-    font-size: clamp(26px, 5.7vw, 34px);
+    font-size: clamp(22px, 4.8vw, 29px);
     font-weight: 500;
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
-  .amount span { color: var(--muted); font-weight: 400; font-size: 0.6em; margin-left: 12px; }
+  .amount span { color: var(--muted); font-weight: 400; font-size: 0.6em; margin-left: 10px; }
 
   .addr-wrap {
     animation-delay: .35s;
     position: relative;
     max-width: 100%;
-    margin-top: 30px; /* tighter with the amount above */
+    margin-top: 26px; /* tighter with the amount above */
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
   }
 
   .ext {
@@ -129,7 +129,7 @@
     transition: color .2s;
   }
   .ext:hover { color: var(--fg); }
-  .ext svg { width: 20px; height: 20px; stroke: currentColor; }
+  .ext svg { width: 17px; height: 17px; stroke: currentColor; }
 
   .address {
     display: inline-block;
@@ -138,7 +138,7 @@
     border: none;
     background: none;
     font-family: var(--mono);
-    font-size: clamp(16px, 3.6vw, 21px);
+    font-size: clamp(14px, 3.1vw, 18px);
     letter-spacing: 0.01em;
     color: var(--muted);
     cursor: pointer;
@@ -152,11 +152,11 @@
 
   .copied-note {
     position: absolute;
-    top: calc(100% + 15px);
+    top: calc(100% + 13px);
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
-    font-size: 18px;
+    font-size: 15px;
     color: #00ba7c;
     opacity: 0;
     transition: opacity .2s;
@@ -166,7 +166,7 @@
 
   footer {
     animation-delay: .5s;
-    padding: 54px 24px 66px;
+    padding: 46px 24px 56px;
     text-align: center;
   }
 </style>
