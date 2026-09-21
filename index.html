@@ -11,14 +11,14 @@
 <link rel="icon" type="image/svg+xml" href="assets/flag.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #000000;
     --fg: #ffffff;
     --muted: #71767b;   /* X's gray */
     --line: #2f3336;    /* X's border gray */
-    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -69,38 +69,34 @@
 
   .brand {
     animation-delay: .15s;
-    margin-top: 28px;
-    font-size: clamp(30px, 6vw, 44px);
+    margin-top: 32px;
+    font-size: clamp(32px, 7vw, 48px);
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.1;
+    line-height: 1.08;
   }
 
   .close {
     animation-delay: .25s;
-    margin-top: 14px;
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 400;
     color: var(--muted);
-  }
-  .close b {
-    color: var(--fg);
-    font-weight: 600;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.08em;
   }
 
   .amount {
     animation-delay: .38s;
-    margin-top: 64px;
-    font-size: clamp(44px, 11vw, 84px);
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    margin-top: 56px;
+    font-family: var(--mono);
+    font-size: clamp(26px, 5.5vw, 40px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
-  .amount span { color: var(--muted); font-weight: 500; font-size: 0.4em; margin-left: 10px; letter-spacing: 0.04em; }
+  .amount span { color: var(--muted); font-weight: 400; font-size: 0.5em; margin-left: 8px; }
 
   .address {
     animation-delay: .46s;
@@ -166,8 +162,8 @@
       <img src="assets/flag.svg" alt="xmoneymint flag logo" width="108" height="62">
     </div>
 
-    <h1 class="brand reveal">X Money Open Edition</h1>
-    <p class="close reveal" id="closeLine">Closes in <b id="countdown">6:00:00</b></p>
+    <h1 class="brand reveal">X Money<br>Open Edition</h1>
+    <p class="close reveal" id="closeLine"><span id="countdown">6:00:00</span></p>
 
     <p class="amount reveal">0.0069420<span>ETH</span></p>
 
@@ -176,7 +172,7 @@
     </button>
     <span class="copied-note" id="copiedNote">Address copied</span>
 
-    <p class="terms reveal"><strong>$8</strong> will be sent for your address.<br>Max 50 per address.</p>
+      <p class="terms reveal"><strong>$8</strong> will be sent for your address.</p>
   </main>
 
   <footer class="reveal">
@@ -221,7 +217,7 @@
   function tick() {
     const ms = CLOSE - Date.now();
     if (ms <= 0) {
-      line.innerHTML = "<b>Mint closed</b>";
+      line.textContent = "Mint closed";
       clearInterval(timer);
       return;
     }
