@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>X Money Open Edition — Proxy Mint</title>
+<title>X Money Open Edition</title>
 <meta name="description" content="Proxy mint for the X Money Open Edition. Send 0.0069420 ETH and $8 will be sent to @jackbutcher on behalf of your address.">
-<meta property="og:title" content="X Money Open Edition — Proxy Mint">
+<meta property="og:title" content="X Money Open Edition">
 <meta property="og:description" content="Send 0.0069420 ETH. $8 will be sent to @jackbutcher on behalf of your address. Max 50 per address.">
 <meta property="og:url" content="https://xmoneymint.com">
 <link rel="icon" type="image/svg+xml" href="assets/flag.svg">
@@ -24,6 +24,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body { height: 100%; }
+  html { scrollbar-gutter: stable both-edges; }
 
   body {
     background: var(--bg);
@@ -56,83 +57,88 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 48px 24px;
+    padding: 72px 32px;
     width: 100%;
-    max-width: 720px;
+    max-width: 1080px;
   }
 
   .reveal { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
   @keyframes rise { to { opacity: 1; transform: none; } }
 
-  .logo { animation-delay: .05s; }
-  .logo img { width: 92px; height: auto; display: block; }
+  .logo img { width: 138px; height: auto; display: block; }
 
-  main > * + * { margin-top: 48px; }
+  main > * + * { margin-top: 72px; }
+
+  .logo { animation-delay: .05s; }
 
   .brand {
     animation-delay: .15s;
-    font-size: clamp(24px, 5.2vw, 34px);
+    font-size: clamp(36px, 7.8vw, 51px);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.25;
   }
 
+  .meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
   .close {
-    animation-delay: .45s;
-    font-size: 13px;
+    font-size: 20px;
     font-weight: 400;
-    line-height: 1.9;
     color: var(--muted);
     font-variant-numeric: tabular-nums;
   }
 
   .tweet {
-    animation-delay: .55s;
-    font-size: 13px;
+    font-size: 20px;
     color: var(--muted);
     text-decoration: none;
     border-bottom: 1px dashed var(--line);
-    padding-bottom: 3px;
+    padding-bottom: 4px;
     transition: color .2s, border-color .2s;
   }
   .tweet:hover { color: var(--fg); border-bottom-color: #536471; }
 
   .amount {
     animation-delay: .25s;
-    font-size: clamp(17px, 3.8vw, 23px);
+    font-size: clamp(26px, 5.7vw, 34px);
     font-weight: 500;
     line-height: 1;
     font-variant-numeric: tabular-nums;
   }
-  .amount span { color: var(--muted); font-weight: 400; font-size: 0.6em; margin-left: 8px; }
+  .amount span { color: var(--muted); font-weight: 400; font-size: 0.6em; margin-left: 12px; }
 
   .addr-wrap {
     animation-delay: .35s;
     position: relative;
     max-width: 100%;
-    margin-top: 20px; /* tighter with the amount above */
+    margin-top: 30px; /* tighter with the amount above */
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
   }
 
   .ext {
     display: inline-flex;
-    padding: 3px;
+    padding: 4px;
     color: var(--muted);
     transition: color .2s;
   }
   .ext:hover { color: var(--fg); }
-  .ext svg { width: 13px; height: 13px; stroke: currentColor; }
+  .ext svg { width: 20px; height: 20px; stroke: currentColor; }
 
   .address {
     display: inline-block;
     max-width: 100%;
-    padding: 4px 2px;
+    padding: 6px 3px;
     border: none;
     background: none;
     font-family: var(--mono);
-    font-size: clamp(11px, 2.4vw, 14px);
+    font-size: clamp(16px, 3.6vw, 21px);
     letter-spacing: 0.01em;
     color: var(--muted);
     cursor: pointer;
@@ -146,11 +152,11 @@
 
   .copied-note {
     position: absolute;
-    top: calc(100% + 10px);
+    top: calc(100% + 15px);
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 18px;
     color: #00ba7c;
     opacity: 0;
     transition: opacity .2s;
@@ -159,18 +165,10 @@
   .copied-note.show { opacity: 1; }
 
   footer {
-    animation-delay: .6s;
-    padding: 36px 0 44px;
+    animation-delay: .5s;
+    padding: 54px 24px 66px;
+    text-align: center;
   }
-  footer a {
-    display: inline-flex;
-    padding: 10px;
-    border-radius: 999px;
-    transition: background .2s;
-  }
-  footer a:hover { background: rgba(255,255,255,0.08); }
-  footer svg { width: 18px; height: 18px; fill: var(--muted); transition: fill .2s; }
-  footer a:hover svg { fill: var(--fg); }
 </style>
 </head>
 <body>
@@ -195,15 +193,13 @@
       <span class="copied-note" id="copiedNote">Address copied</span>
     </div>
 
-    <p class="close reveal" id="closeLine">Closes:<br><span id="countdown">6:00:00</span></p>
-
-    <a class="tweet reveal" href="https://x.com/jackbutcher/status/2101796578428104762" target="_blank" rel="noopener">Jack Butcher on Twitter</a>
   </main>
 
   <footer class="reveal">
-    <a href="https://x.com/xmoneymint" target="_blank" rel="noopener" aria-label="Follow us on X">
-      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-    </a>
+    <div class="meta">
+      <p class="close" id="closeLine"><span id="countdown">6:00:00</span></p>
+      <a class="tweet" href="https://x.com/jackbutcher/status/2101796578428104762" target="_blank" rel="noopener">Jack Butcher on Twitter</a>
+    </div>
   </footer>
 
 <script>
