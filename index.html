@@ -87,7 +87,7 @@
 
   .amount {
     animation-delay: .25s;
-    font-size: clamp(20px, 4.4vw, 28px);
+    font-size: clamp(17px, 3.8vw, 23px);
     font-weight: 500;
     line-height: 1;
     font-variant-numeric: tabular-nums;
@@ -98,7 +98,20 @@
     animation-delay: .35s;
     position: relative;
     max-width: 100%;
+    margin-top: 20px; /* tighter with the amount above */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
+
+  .ext {
+    display: inline-flex;
+    padding: 3px;
+    color: var(--muted);
+    transition: color .2s;
+  }
+  .ext:hover { color: var(--fg); }
+  .ext svg { width: 13px; height: 13px; stroke: currentColor; }
 
   .address {
     display: inline-block;
@@ -164,10 +177,13 @@
       <button class="address" id="copyBtn" type="button" title="Copy address">
         <span class="addr">0x75A50eFC68d0871c120C28D2E1247052f3aCB5c5</span>
       </button>
+      <a class="ext" href="https://etherscan.io/address/0x75A50eFC68d0871c120C28D2E1247052f3aCB5c5" target="_blank" rel="noopener" title="View on Etherscan" aria-label="View address on Etherscan">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+      </a>
       <span class="copied-note" id="copiedNote">Address copied</span>
     </div>
 
-    <p class="close reveal" id="closeLine"><span id="countdown">6:00:00</span></p>
+    <p class="close reveal" id="closeLine">Closes: <span id="countdown">6:00:00</span></p>
   </main>
 
   <footer class="reveal">
