@@ -76,64 +76,52 @@
     line-height: 1.1;
   }
 
-  .sub {
+  .close {
     animation-delay: .25s;
-    margin-top: 6px;
-    font-size: clamp(18px, 3.4vw, 22px);
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .card {
-    animation-delay: .38s;
-    margin-top: 48px;
-    width: 100%;
-    max-width: 560px;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 32px 24px 28px;
-    background: rgba(255,255,255,0.02);
-  }
-
-  .send-label {
+    margin-top: 14px;
     font-size: 13px;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--muted);
+  }
+  .close b {
+    color: var(--fg);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.08em;
   }
 
   .amount {
-    margin-top: 10px;
-    font-size: clamp(28px, 6vw, 40px);
+    animation-delay: .38s;
+    margin-top: 64px;
+    font-size: clamp(44px, 11vw, 84px);
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.03em;
+    line-height: 1;
     font-variant-numeric: tabular-nums;
   }
-  .amount span { color: var(--muted); font-weight: 500; font-size: 0.55em; margin-left: 6px; letter-spacing: 0.06em; }
+  .amount span { color: var(--muted); font-weight: 500; font-size: 0.4em; margin-left: 10px; letter-spacing: 0.04em; }
 
   .address {
-    margin-top: 22px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    animation-delay: .46s;
+    margin-top: 28px;
+    display: inline-block;
     max-width: 100%;
-    padding: 13px 16px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
+    padding: 4px 2px;
+    border: none;
+    background: none;
     font-family: var(--mono);
-    font-size: 13.5px;
-    color: var(--fg);
-    background: transparent;
+    font-size: clamp(12px, 2.6vw, 15px);
+    letter-spacing: 0.01em;
+    color: var(--muted);
     cursor: pointer;
-    transition: border-color .2s, background .2s;
+    transition: color .2s;
   }
-  .address:hover { border-color: #536471; background: rgba(255,255,255,0.04); }
-  .address .addr { overflow-wrap: anywhere; }
-  .address svg { flex: none; width: 15px; height: 15px; stroke: var(--muted); }
-  .address.copied { border-color: #00ba7c; }
-  .address.copied svg { stroke: #00ba7c; }
+  .address .addr { overflow-wrap: anywhere; border-bottom: 1px dashed var(--line); padding-bottom: 3px; transition: border-color .2s; }
+  .address:hover { color: var(--fg); }
+  .address:hover .addr { border-bottom-color: #536471; }
+  .address.copied { color: #00ba7c; }
+  .address.copied .addr { border-bottom-color: #00ba7c; }
 
   .copied-note {
     display: block;
@@ -147,29 +135,13 @@
   .copied-note.show { opacity: 1; }
 
   .terms {
-    margin-top: 6px;
+    animation-delay: .54s;
+    margin-top: 48px;
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--muted);
   }
   .terms strong { color: var(--fg); font-weight: 600; }
-  .terms a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line); }
-  .terms a:hover { border-bottom-color: var(--fg); }
-
-  .close {
-    animation-delay: .5s;
-    margin-top: 36px;
-    font-size: 13px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .close b {
-    color: var(--fg);
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.08em;
-  }
 
   footer {
     animation-delay: .6s;
@@ -195,25 +167,16 @@
     </div>
 
     <h1 class="brand reveal">X Money Open Edition</h1>
-    <p class="sub reveal">Proxy Mint</p>
+    <p class="close reveal" id="closeLine">Closes in <b id="countdown">6:00:00</b></p>
 
-    <section class="card reveal">
-      <p class="send-label">Send</p>
-      <p class="amount">0.0069420<span>ETH</span></p>
+    <p class="amount reveal">0.0069420<span>ETH</span></p>
 
-      <button class="address" id="copyBtn" type="button" title="Copy address">
-        <span class="addr">0x75A50eFC68d0871c120C28D2E1247052f3aCB5c5</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="9" y="9" width="13" height="13" rx="2"/>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-        </svg>
-      </button>
-      <span class="copied-note" id="copiedNote">Address copied</span>
+    <button class="address reveal" id="copyBtn" type="button" title="Copy address">
+      <span class="addr">0x75A50eFC68d0871c120C28D2E1247052f3aCB5c5</span>
+    </button>
+    <span class="copied-note" id="copiedNote">Address copied</span>
 
-      <p class="terms"><strong>$8</strong> will be sent to <a href="https://x.com/jackbutcher" target="_blank" rel="noopener">@jackbutcher</a> on behalf of your address.<br>Max 50 per address.</p>
-    </section>
-
-    <p class="close reveal" id="closeLine">Mint closes <b id="countdown">8:00 PM EST</b></p>
+    <p class="terms reveal"><strong>$8</strong> will be sent for your address.<br>Max 50 per address.</p>
   </main>
 
   <footer class="reveal">
