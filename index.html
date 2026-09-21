@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>X Money Open Edition</title>
-<meta name="description" content="Proxy mint for the X Money Open Edition. Send 0.0069420 ETH and $8 will be sent to @jackbutcher on behalf of your address.">
+<meta name="description" content="X Money Open Edition — Closed.">
 <meta property="og:title" content="X Money Open Edition">
-<meta property="og:description" content="Send 0.0069420 ETH. $8 will be sent to @jackbutcher on behalf of your address. Max 50 per address.">
+<meta property="og:description" content="Closed.">
 <meta property="og:url" content="https://xmoneymint.com">
 <link rel="icon" type="image/svg+xml" href="assets/flag.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,15 +86,21 @@
     gap: 15px;
   }
 
-  .close {
-    font-size: 12px;
+  .closed {
+    animation-delay: .25s;
+    display: inline-block;
+    font-size: clamp(13px, 2.8vw, 16px);
     font-weight: 700;
-    color: var(--fg);
-    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 11px 22px 11px 30px; /* extra left pad to balance letter-spacing */
   }
 
   .tweet {
-    font-size: 12px;
+    font-size: clamp(12px, 2.6vw, 14px);
     color: var(--muted);
     text-decoration: none;
     border-bottom: 1px dashed var(--line);
@@ -102,67 +108,6 @@
     transition: color .2s, border-color .2s;
   }
   .tweet:hover { color: var(--fg); border-bottom-color: #536471; }
-
-  .amount {
-    animation-delay: .25s;
-    font-size: clamp(22px, 4.8vw, 29px);
-    font-weight: 500;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-  }
-  .amount span { color: var(--muted); font-weight: 400; font-size: 0.6em; margin-left: 10px; }
-
-  .addr-wrap {
-    animation-delay: .35s;
-    position: relative;
-    max-width: 100%;
-    margin-top: 26px; /* tighter with the amount above */
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .ext {
-    display: inline-flex;
-    padding: 4px;
-    color: var(--muted);
-    transition: color .2s;
-  }
-  .ext:hover { color: var(--fg); }
-  .ext svg { width: 17px; height: 17px; stroke: currentColor; }
-
-  .address {
-    display: inline-block;
-    max-width: 100%;
-    padding: 6px 3px;
-    border: none;
-    background: none;
-    font-family: var(--mono);
-    font-size: clamp(14px, 3.1vw, 18px);
-    letter-spacing: 0.01em;
-    color: var(--muted);
-    cursor: pointer;
-    transition: color .2s;
-  }
-  .address .addr { overflow-wrap: anywhere; border-bottom: 1px dashed var(--line); padding-bottom: 3px; transition: border-color .2s; }
-  .address:hover { color: var(--fg); }
-  .address:hover .addr { border-bottom-color: #536471; }
-  .address.copied { color: #00ba7c; }
-  .address.copied .addr { border-bottom-color: #00ba7c; }
-
-  .copied-note {
-    position: absolute;
-    top: calc(100% + 13px);
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-size: 15px;
-    color: #00ba7c;
-    opacity: 0;
-    transition: opacity .2s;
-    pointer-events: none;
-  }
-  .copied-note.show { opacity: 1; }
 
   footer {
     animation-delay: .5s;
@@ -181,74 +126,15 @@
 
     <h1 class="brand reveal">X Money<br>Open Edition</h1>
 
-    <p class="amount reveal">0.0069420<span>ETH</span></p>
-
-    <div class="addr-wrap reveal">
-      <button class="address" id="copyBtn" type="button" title="Copy address">
-        <span class="addr">0x75A50eFC68d0871c120C28D2E1247052f3aCB5c5</span>
-      </button>
-      <a class="ext" href="https://etherscan.io/address/0x75A50eFC68d0871c120C28D2E1247052f3aCB5c5" target="_blank" rel="noopener" title="View on Etherscan" aria-label="View address on Etherscan">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
-      </a>
-      <span class="copied-note" id="copiedNote">Address copied</span>
-    </div>
+    <p class="closed reveal">Closed</p>
 
   </main>
 
   <footer class="reveal">
     <div class="meta">
-      <p class="close" id="closeLine"><span id="countdown">6:00:00</span></p>
-      <a class="tweet" href="https://x.com/jackbutcher/status/2101796578428104762" target="_blank" rel="noopener">Announcement</a>
+      <a class="tweet" href="https://x.com/xmoneymint" target="_blank" rel="noopener">https://x.com/xmoneymint</a>
     </div>
   </footer>
 
-<script>
-  // copy address
-  const ADDRESS = "0x75A50eFC68d0871c120C28D2E1247052f3aCB5c5";
-  const btn = document.getElementById("copyBtn");
-  const note = document.getElementById("copiedNote");
-  function copyFallback() {
-    const ta = document.createElement("textarea");
-    ta.value = ADDRESS;
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand("copy");
-    ta.remove();
-  }
-  function showCopied() {
-    btn.classList.add("copied");
-    note.classList.add("show");
-    setTimeout(() => { btn.classList.remove("copied"); note.classList.remove("show"); }, 1800);
-  }
-  btn.addEventListener("click", () => {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(ADDRESS).then(showCopied, () => { copyFallback(); showCopied(); });
-    } else {
-      copyFallback();
-      showCopied();
-    }
-  });
-
-  // countdown to 8PM ET, Sep 21 2026 (= 2026-09-22 00:00 UTC)
-  const CLOSE = Date.parse("2026-09-22T00:00:00Z");
-  const cd = document.getElementById("countdown");
-  const line = document.getElementById("closeLine");
-  function tick() {
-    const ms = CLOSE - Date.now();
-    if (ms <= 0) {
-      line.textContent = "Mint closed";
-      clearInterval(timer);
-      return;
-    }
-    const h = Math.floor(ms / 3.6e6);
-    const m = Math.floor(ms % 3.6e6 / 6e4);
-    const s = Math.floor(ms % 6e4 / 1e3);
-    cd.textContent = `${h}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
-  }
-  const timer = setInterval(tick, 1000);
-  tick();
-</script>
 </body>
 </html>
