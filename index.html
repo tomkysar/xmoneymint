@@ -81,9 +81,21 @@
     animation-delay: .45s;
     font-size: 13px;
     font-weight: 400;
+    line-height: 1.9;
     color: var(--muted);
     font-variant-numeric: tabular-nums;
   }
+
+  .tweet {
+    animation-delay: .55s;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--line);
+    padding-bottom: 3px;
+    transition: color .2s, border-color .2s;
+  }
+  .tweet:hover { color: var(--fg); border-bottom-color: #536471; }
 
   .amount {
     animation-delay: .25s;
@@ -183,7 +195,9 @@
       <span class="copied-note" id="copiedNote">Address copied</span>
     </div>
 
-    <p class="close reveal" id="closeLine">Closes: <span id="countdown">6:00:00</span></p>
+    <p class="close reveal" id="closeLine">Closes:<br><span id="countdown">6:00:00</span></p>
+
+    <a class="tweet reveal" href="https://x.com/jackbutcher/status/2101796578428104762" target="_blank" rel="noopener">Jack Butcher on Twitter</a>
   </main>
 
   <footer class="reveal">
