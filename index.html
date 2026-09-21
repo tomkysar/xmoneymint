@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>X Money Open Edition — Proxy Mint</title>
+<meta name="description" content="Proxy mint for the X Money Open Edition. Send 0.0069420 ETH and $8 will be sent to @jackbutcher on behalf of your address.">
+<meta property="og:title" content="X Money Open Edition — Proxy Mint">
+<meta property="og:description" content="Send 0.0069420 ETH. $8 will be sent to @jackbutcher on behalf of your address. Max 50 per address.">
+<meta property="og:url" content="https://xmoneymint.com">
+<link rel="icon" type="image/svg+xml" href="assets/flag.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --fg: #ffffff;
+    --muted: #71767b;   /* X's gray */
+    --line: #2f3336;    /* X's border gray */
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Chirp", "Archivo", -apple-system, "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  /* faint atmosphere behind the flag */
+  .glow {
+    position: fixed;
+    top: -20vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120vmin;
+    height: 120vmin;
+    background: radial-gradient(closest-side, rgba(255,255,255,0.07), transparent 70%);
+    pointer-events: none;
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 24px;
+    width: 100%;
+    max-width: 720px;
+  }
+
+  .reveal { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  .logo { animation-delay: .05s; }
+  .logo img { width: 108px; height: auto; display: block; }
+
+  .brand {
+    animation-delay: .15s;
+    margin-top: 28px;
+    font-size: clamp(30px, 6vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .sub {
+    animation-delay: .25s;
+    margin-top: 6px;
+    font-size: clamp(18px, 3.4vw, 22px);
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .card {
+    animation-delay: .38s;
+    margin-top: 48px;
+    width: 100%;
+    max-width: 560px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px 24px 28px;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .send-label {
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .amount {
+    margin-top: 10px;
+    font-size: clamp(28px, 6vw, 40px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+  .amount span { color: var(--muted); font-weight: 500; font-size: 0.55em; margin-left: 6px; letter-spacing: 0.06em; }
+
+  .address {
+    margin-top: 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 100%;
+    padding: 13px 16px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--fg);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+  }
+  .address:hover { border-color: #536471; background: rgba(255,255,255,0.04); }
+  .address .addr { overflow-wrap: anywhere; }
+  .address svg { flex: none; width: 15px; height: 15px; stroke: var(--muted); }
+  .address.copied { border-color: #00ba7c; }
+  .address.copied svg { stroke: #00ba7c; }
+
+  .copied-note {
+    display: block;
+    height: 18px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #00ba7c;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  .copied-note.show { opacity: 1; }
+
+  .terms {
+    margin-top: 6px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .terms strong { color: var(--fg); font-weight: 600; }
+  .terms a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .terms a:hover { border-bottom-color: var(--fg); }
+
+  .close {
+    animation-delay: .5s;
+    margin-top: 36px;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .close b {
+    color: var(--fg);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.08em;
+  }
+
+  footer {
+    animation-delay: .6s;
+    padding: 36px 0 44px;
+  }
+  footer a {
+    display: inline-flex;
+    padding: 10px;
+    border-radius: 999px;
+    transition: background .2s;
+  }
+  footer a:hover { background: rgba(255,255,255,0.08); }
+  footer svg { width: 18px; height: 18px; fill: var(--muted); transition: fill .2s; }
+  footer a:hover svg { fill: var(--fg); }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+
+  <main>
+    <div class="logo reveal">
+      <img src="assets/flag.svg" alt="xmoneymint flag logo" width="108" height="62">
+    </div>
+
+    <h1 class="brand reveal">X Money Open Edition</h1>
+    <p class="sub reveal">Proxy Mint</p>
+
+    <section class="card reveal">
+      <p class="send-label">Send</p>
+      <p class="amount">0.0069420<span>ETH</span></p>
+
+      <button class="address" id="copyBtn" type="button" title="Copy address">
+        <span class="addr">0x75A50eFC68d0871c120C28D2E1247052f3aCB5c5</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+      </button>
+      <span class="copied-note" id="copiedNote">Address copied</span>
+
+      <p class="terms"><strong>$8</strong> will be sent to <a href="https://x.com/jackbutcher" target="_blank" rel="noopener">@jackbutcher</a> on behalf of your address.<br>Max 50 per address.</p>
+    </section>
+
+    <p class="close reveal" id="closeLine">Mint closes <b id="countdown">8:00 PM EST</b></p>
+  </main>
+
+  <footer class="reveal">
+    <a href="https://x.com/xmoneymint" target="_blank" rel="noopener" aria-label="Follow us on X">
+      <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+  </footer>
+
+<script>
+  // copy address
+  const ADDRESS = "0x75A50eFC68d0871c120C28D2E1247052f3aCB5c5";
+  const btn = document.getElementById("copyBtn");
+  const note = document.getElementById("copiedNote");
+  function copyFallback() {
+    const ta = document.createElement("textarea");
+    ta.value = ADDRESS;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+  }
+  function showCopied() {
+    btn.classList.add("copied");
+    note.classList.add("show");
+    setTimeout(() => { btn.classList.remove("copied"); note.classList.remove("show"); }, 1800);
+  }
+  btn.addEventListener("click", () => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(ADDRESS).then(showCopied, () => { copyFallback(); showCopied(); });
+    } else {
+      copyFallback();
+      showCopied();
+    }
+  });
+
+  // countdown to 8PM ET, Sep 21 2026 (= 2026-09-22 00:00 UTC)
+  const CLOSE = Date.parse("2026-09-22T00:00:00Z");
+  const cd = document.getElementById("countdown");
+  const line = document.getElementById("closeLine");
+  function tick() {
+    const ms = CLOSE - Date.now();
+    if (ms <= 0) {
+      line.innerHTML = "<b>Mint closed</b>";
+      clearInterval(timer);
+      return;
+    }
+    const h = Math.floor(ms / 3.6e6);
+    const m = Math.floor(ms % 3.6e6 / 6e4);
+    const s = Math.floor(ms % 6e4 / 1e3);
+    cd.textContent = `${h}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+  }
+  const timer = setInterval(tick, 1000);
+  tick();
+</script>
+</body>
+</html>
